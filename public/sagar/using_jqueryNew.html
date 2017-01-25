@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>DOM</title>
+  <style>
+    li {
+      list-style-type: none;
+    }
+    #mainDiv {
+      display: -webkit-flex;
+      display: flex;
+    }
+    p.hey {
+      margin: 29px 0 30px 28px;
+    }
+    input {
+      margin: 18px;
+    }
+    li :hover{
+      cursor: pointer;
+    }
+    #oneDiv, #twoDiv {
+      min-height: 290px;
+      height: auto;
+    }
+  </style>
+</head>
+<body style="width: 700px">
+<div id="mainDiv">
+  <div id="oneDiv" style="float: left; width: 50%; border: 1px solid black; padding: 20px 0 10px 20px;">
+      <ul>
+        <li><input type="checkbox" id="f1" name="number" value="One"/><span>One</span>
+        </li>
+      
+        <li><input type="checkbox" id="f2" name="number" value="Two"><span>Two</span></li>
+
+        <li><input type="checkbox" id="f3" name="number" value="Three"><span>Three</span></li>
+
+        <li><input type="checkbox" id="f4" name="number" value="Four"><span>Four</span></li>
+      
+        <li><input type="checkbox" id="f5" name="number" value="Five"><span>Five</span>
+        </li>
+
+        <li id="last"><button type="button" id ="btn">Add</button></li>
+      </ul>
+
+  </div>
+
+  <div id="twoDiv" style="float: right; width: 43.80%; border: solid black; border-width: 1px 1px 1px 0; padding: 20px 0 10px 20px;">
+  </div>
+</div>
+
+<script
+  src="https://code.jquery.com/jquery-3.1.1.js"
+  integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+  crossorigin="anonymous"></script>
+
+<script>
+  $(document).ready(function(){
+    $('ul').on('click', 'li', function(){
+
+      //if(e.target.nodeName !== "INPUT" ){
+          $(this).find('input').prop("checked") ? $(this).find('input').prop("checked",false) : $(this).find('input').prop("checked", true)
+       // }
+        dynamicElement.call($(this));
+
+        
+    });
+    $("#btn").on('click',function(){
+       var inp = prompt("Add a Number").toLowerCase().replace(/\b[a-z]/, function(letter) {
+             return letter.toUpperCase();
+           });
+           $('#last').before($('<li><input type="checkbox" class="lol" /><span>'+ inp +'</span></li>'));
+    });
+  });
+  
+    function dynamicElement(){
+          if ($(this).find('input').prop("checked")){
+            var text = $("<p></p>").html($(this)[0].innerText).addClass("hey");
+              $('#twoDiv').append(text);
+          } else {
+            var outerThis = $(this);
+            $.each($(".hey"),function(i, value){
+              if (value.innerHTML === (outerThis)[0].innerText) {
+                $(value).remove();
+              }
+            });
+          }
+        }
+    // function newInput(inp){
+    //       var txt1 = $('<li><input type="checkbox" class="lol" /><span>'+ inp +'</span></li>');
+    //      // $('ul').append(txt1);
+    //       $('#last').before($('<li><input type="checkbox" class="lol" /><span>'+ inp +'</span></li>'));
+    //       //  var txt2 = $("<input>").attr({type:"checkbox", class:"lol"});
+    //       // $(txt1).append(txt2);
+    //       //var txt3 = $("<span></span>").text(inp);
+    //       //$(txt2).after(txt3);
+    //     }
+  
+</script>
+</body>
+</html>   

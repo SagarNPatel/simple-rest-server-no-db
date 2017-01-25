@@ -1,0 +1,270 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+a {
+	text-decoration: none;
+	font-weight: bold;
+	color: #467aa7;
+}
+
+a:hover {
+	color: #80B0DA;
+	text-decoration: none;
+}
+
+#container{
+	width: 760px;
+    margin: 20px auto;
+    padding: 1px 0;
+    border: 2px solid #a0a0a0;
+    text-align: left;
+    font: 76% Verdana; 
+	line-height: 1.4em;
+}
+
+/* Header */
+
+header {
+	height: 110px;
+	width: 758px;
+	color: white;
+	margin: 0 1px;
+	background-color: #4279A5;
+}
+
+header h1 {
+	font-size: 2.4em;
+	font-weight:normal;
+	padding: 35px 0 0 20px;
+}
+
+header h2 {
+	font-size: 1.4em;
+	font-weight:normal;
+	margin: 10px 0 0 40px;
+}
+
+/* Navigation */
+
+#nav {
+	width: 758px;
+	height: 2.2em;
+	line-height: 2.20em;
+	margin: 0 1px;
+}
+
+#nav ul {
+	list-style-type: none;
+    margin: 0;
+    padding: 0;
+    /*overflow: hidden;*/
+    border-top: 1px solid white;
+    background-color: #4279A5;
+ 
+}
+
+#nav li {
+	float: left;
+	border-right: 1px solid white;
+	list-style-type: none;
+}
+
+#nav li a {
+	text-decoration: none;
+	color: white;
+	font-size: x-small;
+	padding: 5px 10px 10px 5px;
+}	
+
+#nav .selected, #nav li:hover {
+	background-color: #80B0DA;
+}
+/*This create new contant after ul, 
+used clear both, by this method we 
+don't need to use overflow: hidden*/
+ul::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/*Content*/
+
+#content {
+	float: left;
+	width: 530px;
+	font-size: 0.9em;
+	padding: 20px 0 0 10px;
+}
+
+#content h2 {
+	display: block;
+	font-weight: normal;
+	font-size: 1.7em;
+	margin: 0 0 15px 0;
+}
+
+#content h2 a {
+	font-weight: normal;
+}
+
+#content h3 {
+	margin:0 0 5px 0; 
+	font-size:1.4em; 
+}
+
+#content ul, #content ol, #content dl {
+	margin: 0 5px 16px 35px;
+}
+
+#content dt {
+	font-weight: bold; 
+	margin-bottom: 5px;
+}
+
+#content dd {
+	margin:0 0 10px 15px;
+}
+
+#contentleft {
+	float: left;
+	width: 48%;
+}
+
+#contentright {
+	float: right;
+	width: 48%;
+}
+
+.imp {
+	color: #F72021;
+}
+
+.contentinsidebox {
+	padding: 15px 0 15px 0;
+}
+.sectiontext {
+	margin: 15px 0 15px 0;
+}
+
+.headcontentright{
+	padding-top: 15px; 
+}
+
+.contentrighttext {
+	margin-top: 35px
+}
+
+/* Aside */
+
+aside {
+	float: right;
+	width: 180px;
+	padding: 20px 20px 10px 20px;
+	line-height: 1.4em;	
+}
+
+aside h2 {
+	display: block;
+	margin: 0 0 15px 0;
+	font-size: 1.7em;
+	font-weight: normal;
+	text-align: left;
+}
+
+aside p {
+	margin: 0 0 16px 0; 
+	font-size: 0.9em;
+}
+
+.box {
+	margin: 0 0 33px 0;
+	padding: 10px;
+	border: 1px solid #c0c0c0;
+	background-color: #FFFBFF;
+	color: #505050;
+	line-height: 1.5em;
+}
+
+.small {
+	font-size: 0.8em;
+}
+
+/* Nested Menu*/
+
+.nestedmenu {
+	margin: 0 0 20px 8px; 
+	font-size: 0.9em;
+}
+
+.nestedmenu li {
+	list-style: none; 
+	display: block; 
+	padding: 2px; 
+	margin-bottom: 2px;
+}
+
+.nestedmenu li a {
+	font-weight: bold; 
+	text-decoration: none;
+}
+
+.nestedmenu li ul {
+	margin: 3px 0 3px 15px; 
+	font-size: 1em; 
+	font-weight: normal;
+}
+
+.nestedmenu li ul a{
+	font-weight: normal;
+}
+
+/* Search Bar */
+
+.search { 
+	margin: 0 0 20px 0;
+}
+
+.search form {
+	margin-left: 10px; 
+}
+
+.search .demo {
+	height: 1.2em;
+	width: 110px;
+	margin: 0 5px 0 0;
+	border: 1px solid #a0a0a0;
+}
+
+.search .searchbutton {
+	width: auto;
+	padding: 0 1px;
+	border: 1px solid #808080;
+	font-size: 0.9em;
+	text-align: center;
+}
+
+.searchbutton {
+	background-color: #D6D3CE;
+	height: 1.5em;
+}
+
+/* Footer */
+
+footer {
+	clear:both;
+	width:758px;
+	padding: 5px 0;
+	margin: 0 1px;
+	font-size: 0.9em;
+	color: #f0f0f0;
+	background: #467aa7;
+}
+
+footer p {
+	padding: 0; 
+	margin: 0; 
+	text-align: center;
+}

@@ -1,0 +1,165 @@
+<!--Q. First day of training, give some basic JS(based on variable, string, function, loops, Array) Questions.
+Ask About:
+i) Scope- Globle and local
+ii) Hoisting
+iii) basics of JS
+completed on 19th December First day of class-->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Basic JS Exercises</title>
+</head>
+<body>
+<p>
+1. Create a function which takes a string(sentence) as argument and alert each word. so if a sentence is "Javascript is fun" there alert should be displayed with each of the word Javascript , is and fun.
+</p>
+<p id="demo"></p>
+<script>
+function alertEachWord(a){
+      var word = a.split(" ");
+        for (var i = 0; i < word.length; i++){
+          alert(word[i]);
+        }
+}
+document.getElementById("demo").innerHTML = alertEachWord("Javascript is fun"); 
+</script>
+
+<p>
+2. Define a function max() that takes two numbers as arguments and returns the largest of them. Use the if-then-else construct available in Javascript. (Do not use Math.max)
+</p>
+<p id="demo1"></p>
+<script>
+function max(a, b) {
+    if (a > b){
+        return a;
+    } else {
+        return b;
+    }
+}
+document.getElementById("demo1").innerHTML = max(10, 2); 
+</script>
+
+<p>
+3. Define a function maxOfThree() that takes three numbers as arguments and returns the largest of them. (Do not use Math.max)
+</p>
+<p id="demo2"></p>
+<script>
+function maxOfThree(a, b, c) {
+    if (a > b && a > c){
+      return a;
+    } else if (a < b && c < b) {
+      return b;
+    } else {
+      return c;
+  }
+}
+
+document.getElementById("demo2").innerHTML = maxOfThree(10, 22, 44); 
+</script>
+
+<p>
+4. Write a function that takes a character (i.e. a string of length 1) and returns true if it is a vowel, false otherwise.
+</p>
+<p id="demo3"></p>
+<script>
+function vowelCheck(x){
+    switch (x){
+      case "a":
+      case "e":
+      case "i":
+      case "o":
+      case "u":
+        return true;
+      default:
+        return false;
+  }
+}
+
+document.getElementById("demo3").innerHTML = vowelCheck("o"); 
+</script>
+
+<p>
+5. Define a function sum() and a function multiply() that sums and multiplies (respectively) all the numbers in an array of numbers. For example,sum([1,2,3,4]) should return 10, and multiply([1,2,3,4]) should return 24.
+</p>
+<p id="demo4"></p>
+<script>
+/* Using arguments as Array
+
+There is still a way to call array methods on arguments:*/
+function sum(){
+  var i = 0;
+  var total = 0;
+  while(i < arguments.length){
+    total = total + arguments[i];
+    i++;
+  }
+  return total;
+}
+// here I used sum([1, 2, 3, 4]); then sir says you can pass array methods then I used this and it works.
+document.getElementById("demo4").innerHTML = sum(1,2,3,4);
+</script>
+
+<p id="demo5"></p>
+<script>
+function multiply(mul){
+  /* If you declare a variable, without using "var", the variable always becomes GLOBAL, either inside of function or outside of function */
+  i = 0;
+  var total = 1;
+  while(i < mul.length){
+    total = total * mul[i];
+    i++;
+  }
+  return total;
+}
+document.getElementById("demo5").innerHTML = multiply([1,2,3,4]);
+</script>
+
+<p>
+6. Define a function reverse() that computes the reversal of a string. For example, reverse("jag testar") should return the string "ratset gaj”.
+</p>
+<p id="demo6"></p>
+<script>
+function reverse(str){
+  return str.split("").reverse().join("");
+}
+
+document.getElementById("demo6").innerHTML = reverse("jag testar");
+</script>
+
+<p>
+7. Write a function findLongestWordLength()  that takes an array and returns the length of the longest words.
+</p>
+<p id="demo7"></p>
+<script>
+var findLongestWordLength = function (word){
+  var total = 0;
+  for (var i = 0; i < word.length; i++){
+    if (word[i].length > total){
+      total = word[i].length;
+    }
+  }
+  return total;
+}
+
+document.getElementById("demo7").innerHTML = findLongestWordLength(["hey", "your", "name", "please", "?"]);
+</script>
+
+<p>
+8. Write a function filterLongWords() that takes an array of words and an integer i and returns the array of words that are longer than i.
+</p>
+<p id="demo8"></p>
+<script>
+function filterLongWords(word, i){
+  for (var j = 0; j < word.length; j++){
+    if (word[j].length > i){
+      console.log(word[j]);
+    }
+  }
+}
+document.getElementById("demo8").innerHTML = filterLongWords(["hey", "your", "name", "please", "?"], 3);
+</script>
+
+</body>
+</html>

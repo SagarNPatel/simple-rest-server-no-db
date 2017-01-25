@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Form</title>
+
+	<meta  charset="utf-8" />
+
+</head>
+<body>
+<div id="container">
+	<form>
+		<h1>General Form</h1>
+		<label>First Name:</label>
+		<input name="firstName" /> <br/> <br/>
+
+		<label>Last Name:</label>
+		<input name="lastName" /> <br/> <br/>
+
+		<label>Email:</label>	
+		<input name="email" /> <br/> <br/>
+		<label>Address:</label>	
+		<input name="address" /> <br/> <br/>
+		<input type="button" id="btn" value="submit">
+	</form>
+	<div id="display"></div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<script>
+$(document).ready(function(){
+	$("#btn").on("click",getPost);
+	var counter;
+	function getPost() {
+		
+		$.ajax({
+			url:'/newFormInfos',
+			type:'POST',
+			data: {
+					'firstName': $('input[name=firstName]').val(), 
+					'lastName': $('input[name=lastName]').val(), 
+					'email' : $('input[name=email]').val(), 
+					'address': $('input[name=address]').val()
+				},
+			success: function successGP(data) {
+				if(counter){
+					getData([data]);
+				}
+				else{
+					$.ajax({
+						url:'/newFormInfos',
+						type:'GET',
+						success: function (data){
+							getData(data);
+						}
+					})
+					counter = 1;
+				}
+		
+			}
+		})
+	}
+	function getData(data) {
+		$.each(data, function(i, value){
+	 		$("#display").append(
+				"<br>" + "First Name: " + data[i].firstName + "<br>" + 
+                "Last Name: " + data[i].lastName + "<br>" +
+              	"Email id: " + data[i].email + "<br>" +
+              	"Address: " + data[i].address + "<br>"
+          	);	
+		})
+	}
+		// $.ajax({url: '/newFormInfos', 
+		// 		type: 'GET', 
+		// 		data: { 
+		// 			'firstName': $('input[name=firstName]').val(), 
+		// 			'lastName': $('input[name=lastName]').val(), 
+		// 			'email' : $('input[name=email]').val(), 
+		// 			'address': $('input[name=address]').val()
+		// 		}, 
+		// 		dataType: 'json', 
+		// 		success: function(data){
+		// 			$("#btn").click(function(){
+
+		// 				$.get("/newFormInfos", function(data){
+		// 				// 	console.log(data);
+		// 				 	$.each(data, function(i, value){
+		// 				 		$("#display").append(
+		// 							"<br>" + "First Name: " + data[i].firstName + "<br>" + 
+		// 	                        "Last Name: " + data[i].lastName + "<br>" +
+		// 	                      	"Email id: " + data[i].email + "<br>" +
+		// 	                      	"Address: " + data[i].address + "<br>"
+		//                       	);
+		// 					});
+		// 				});
+		// 			});
+		// 		}
+		// });
+});
+
+</script>
+
+</body>
+</html>
