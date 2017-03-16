@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Product Page</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+		<link type="text/css" rel="stylesheet" href="css/style.css"/>
+	
+		<!-- Latest compiled and minified CSS -->
+		<link href="css/bootstrap.css" rel="stylesheet">
+
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+		<!-- Latest compiled JavaScript -->
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+</head>
+<body>
+
+      <div class="navbar navbar-inverse">
+          <div class="container">
+              <div class="navbar-header">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                  </button>
+                  <a href="#" class="navbar-brand">Store</a>
+              </div>
+              
+              <div class="navbar-collapse collapse">
+                  <ul class="nav navbar-nav">
+                    <li class="active"><a href="index2.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="feature.html">Catalog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+      <div class="list-group">
+          <div class="container col-md-3">
+              <a href="#" class="list-group-item active">Cras justo odio</a>
+              <a href="#" class="list-group-item">Dapibus ac faclisis in</a>
+              <a href="#" class="list-group-item">Morbi leo risus</a>
+              <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+              <a href="#" class="list-group-item">Vestiburn at eros</a>
+          </div>
+      </div>
+          
+
+      <div class="container col-md-9" id="d1">
+          <form class="form-inline" role="form">
+              <div class="form-group">
+                <label for="search">Search:</label>
+                <input type="search" class="form-control" id="search" placeholder="Serach by item name">
+              </div>
+          </form><br>
+      
+          <form class="form-inline" role="form">
+              <div class="form-group">
+                  <label for="search">Add Item:</label>
+                  <label class="sr-only" for="additem">Add Item:</label>
+                  <input type="text" class="form-control" id="additem" name="additem" placeholder="Item Name">
+              </div>
+
+              <div class="form-group">
+                  <label class="sr-only" for="description">Description:</label>
+                  <input type="text" class="form-control" id="description" placeholder="Description">
+              </div>
+
+              <div class="form-group">
+                  <label class="sr-only" for="price">Price:</label>
+                  <input type="text" class="form-control" id="price" placeholder="Price">
+              </div>
+                <button type="button" class="btn btn-primary" id="add">Add</button>
+          </form><br>
+      </div>
+      
+  <script>
+        
+      $('document').ready(function(){
+
+        //Get data on current page
+        function dispalyitem(){
+          $.ajax({
+                type    : "get",
+                url     : "/products/",
+                success : function(data) {
+                  getData(data);
+                } 
+          });
+        }
+          
+        dispalyitem();
+        
+        //append data on current page
+        $("#add").on('click',function(){
+              $.ajax({
+                  url     : "/products",
+                  type    : "post",      
+                  data    : {
+                            'additem': $("#additem").val(),
+                            'description': $("#description").val(),
+                            'price':$("#price").val(),
+                            },
+                  success : function(data){
+                    getData([data]);      
+                  // $("#d1").append('<div class="alert alert-info"> <div class="row"> \
+                  //       <div class="col-xs-8"><h4><strong>' + data.additem + '</strong></h4><p>'+ data.description+'</p></div> \
+                  //       <div class="col-xs-2"><button type="button" class="btn btn-primary pull-right"> $'+ data.price+' </button></div> \
+                  //       <div class="col-xs-1"><span></span><a href="#"><span id='+ data.id +' class="glyphicon glyphicon-remove-sign"></span></a></div> \
+                  //        <div></div>'); 
+                    $("#additem").val("");
+                    $("#description").val("");
+                    $("#price").val("");
+                  }
+              });
+        });
+
+        //delete data on current page
+        $("div").on('click','.glyphicon-remove-sign',function(){
+              var deleteitem=$(this).prop('id');
+              console.log(deleteitem);
+              var deleteitem2=$(this).closest('div.alert');
+              console.log(deleteitem2);
+              $.ajax({
+                url : '/products/'+ deleteitem,
+                type : "DELETE",
+                data : {"id":deleteitem},
+                success : function(){
+                  console.log($(this));
+                  deleteitem2.remove();       
+                }
+              });
+        });
+
+        function getData(data) {
+          $.each(data, function(i, value){
+              $("#d1").append(
+                '<div class="alert alert-info"> <div class="row"> \
+                <div class="col-xs-8"><h4><strong>' + data[i].additem + '</strong></h4><p>'+ data[i].description+'</p></div> \
+                <div class="col-xs-2"><div class="btn btn-primary"> $'+ data[i].price+' </div></div> \
+                <div class="col-xs-1"><span></span><span id='+ data[i].id +' class="glyphicon glyphicon-remove-sign"></span></div> \ <div></div>'
+              );
+          });
+        }
+      });
+  </script>
+</body>
+</html>

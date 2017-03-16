@@ -33,14 +33,14 @@ $(document).ready(function(){
 	function getPost() {
 		
 		$.ajax({
-			url:'/newFormInfos',
-			type:'POST',
-			data: {
+			url   :'/newFormInfos',
+			type  :'POST',
+			data  : {
 					'firstName': $('input[name=firstName]').val(), 
 					'lastName': $('input[name=lastName]').val(), 
 					'email' : $('input[name=email]').val(), 
 					'address': $('input[name=address]').val()
-				},
+				    },
 			success: function successGP(data) {
 				if(counter){
 					getData([data]);
